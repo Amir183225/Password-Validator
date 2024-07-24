@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Validator</title>
+    <style>
+        input {
+            width: 250px;
+            height: 25px;
+            border-radius: 15px;
+            margin-bottom: 10px;
+            padding: 5px;
+            font-size: 16px;
+            margin-left: 540px;
+        }
+        fieldset {
+            width: fit-content;
+            margin: auto;
+        }
+        h2 {
+            text-align: center;
+        }
+        p {
+            margin: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1 style="text-align: center;">Password Validator</h1>
+    <input type="text" id="passwordInput" placeholder="Enter your password">
+    <br><br>
+    <fieldset>
+        <legend>Password Requirements</legend>
+        <h2>Password Should Contain:</h2>
+        <p id="numbers">Should contain numbers (0-9)</p>
+        <p id="minLength">Should be at least 8 characters long</p>
+        <p id="special">Should contain at least 1 special character</p>
+        <p id="lowercase">Should contain at least 1 lowercase letter</p>
+        <p id="uppercase">Should contain at least 1 uppercase letter</p>
+    </fieldset>
+
+    <script>
+        const input = document.getElementById('passwordInput');
+
+        input.addEventListener('input', function() {
+            const password = input.value;
+            const numbers = /[0-9]/.test(password);
+            const minLength = password.length >= 8;
+            const special = /[!@#$&*]/.test(password);
+            const lowercase = /[a-z]/.test(password);
+            const uppercase = /[A-Z]/.test(password);
+
+            document.getElementById('numbers').style.color = numbers ? 'green' : 'red';
+            document.getElementById('minLength').style.color = minLength ? 'green' : 'red';
+            document.getElementById('special').style.color = special ? 'green' : 'red';
+            document.getElementById('lowercase').style.color = lowercase ? 'green' : 'red';
+            document.getElementById('uppercase').style.color = uppercase ? 'green' : 'red';
+        });
+    </script>
+</body>
+</html>
